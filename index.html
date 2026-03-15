@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idle Fishing Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-content">
+        <div class="title-row">
+          <h1>🐟 Idle Fishing Calculator</h1>
+          <span class="version">v2.0.0.4</span>
+        </div>
+        <p class="subtitle">Enter your in-game values to get optimal upgrade recommendations</p>
+      </div>
+    </header>
+
+    <div class="controls-bar">
+      <div class="dock-selector">
+        <label for="dock-select">🏝️ Select Dock:</label>
+        <select id="dock-select">
+          <option value="lake">Lake</option>
+          <option value="desert">Desert</option>
+          <option value="tundra">Tundra</option>
+          <option value="ocean">Ocean</option>
+          <option value="nuclear">Nuclear</option>
+          <option value="abyss">Abyss</option>
+          <option value="cave">Cave</option>
+          <option value="volcano">Volcano</option>
+          <option value="sky">Sky</option>
+          <option value="solaris">Solaris</option>
+          <option value="galaxy">Galaxy</option>
+        </select>
+      </div>
+      <div class="action-buttons">
+        <button id="btn-reset" class="btn btn-danger" title="Reset all values">🔄 Reset</button>
+        <button id="btn-export" class="btn btn-secondary" title="Copy data to clipboard">📋 Export</button>
+        <button id="btn-import" class="btn btn-secondary" title="Import data from clipboard">📥 Import</button>
+      </div>
+    </div>
+
+    <!-- Recommendations Panel -->
+    <section id="recommendations" class="panel recommendations-panel">
+      <h2>🏆 Recommended Upgrades</h2>
+      <p class="panel-desc">Best growth per cost — upgrade these first!</p>
+      <div id="rec-list" class="rec-grid"></div>
+    </section>
+
+    <!-- Stats Overview -->
+    <section id="stats-overview" class="panel stats-panel">
+      <h2>📊 Overview</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Fishing Power</span>
+          <span id="stat-power" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Fish / Minute</span>
+          <span id="stat-fpm" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Effective Ticks</span>
+          <span id="stat-ticks" class="stat-value">60</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Shiny Bonus</span>
+          <span id="stat-shiny" class="stat-value">1.00x</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      <!-- Fishing Upgrades (Fish Cost) -->
+      <section id="fishing-upgrades" class="panel">
+        <h2>🎣 Fishing Upgrades <span class="cost-type fish-cost">Fish Cost</span></h2>
+        <p class="panel-desc">Base upgrades purchased with fish</p>
+        <div class="upgrade-list" id="upgrades-list"></div>
+      </section>
+
+      <!-- Fishing Enhance (Gem Cost) -->
+      <section id="fishing-enhance" class="panel">
+        <h2>💎 Fishing Enhance <span class="cost-type gem-cost">Gem Cost</span></h2>
+        <p class="panel-desc">Enhancements purchased with gems</p>
+        <div class="upgrade-list" id="enhance-list"></div>
+      </section>
+
+      <!-- Skill Tree -->
+      <section id="skill-tree" class="panel">
+        <h2>🌳 Skill Tree <span class="cost-type gem-cost">Gem Cost</span></h2>
+        <p class="panel-desc">Powerful skills with limited levels</p>
+        <div class="upgrade-list" id="skill-list"></div>
+      </section>
+
+      <!-- Bar Upgrades -->
+      <section id="bar-upgrades" class="panel">
+        <h2>⚡ Bar Upgrades & Bonuses</h2>
+        <p class="panel-desc">Special upgrades and bonuses</p>
+        <div class="bar-grid" id="bar-list"></div>
+      </section>
+
+      <!-- Cards -->
+      <section id="cards-section" class="panel">
+        <h2>🃏 Cards</h2>
+        <p class="panel-desc">0=None, 1=Normal, 2=Gilded, 3=Polychrome, 4=Infernal</p>
+        <div class="cards-container">
+          <div class="card-group">
+            <h3>T1 Cards</h3>
+            <div class="card-slots" id="t1-cards"></div>
+          </div>
+          <div class="card-group">
+            <h3>T2 Cards</h3>
+            <div class="card-slots" id="t2-cards"></div>
+          </div>
+          <div class="card-group">
+            <h3>Other Cards</h3>
+            <div class="card-slots" id="other-cards"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <p>Based on the spreadsheet by C.Rody, Metzli & Jake From Snake Farm · Game v2.0 · Sheet V2.0.0.4</p>
+    </footer>
+  </div>
+
+  <div id="import-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Import Data</h3>
+      <textarea id="import-text" placeholder="Paste exported data here..."></textarea>
+      <div class="modal-actions">
+        <button id="btn-import-confirm" class="btn btn-primary">Import</button>
+        <button id="btn-import-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
