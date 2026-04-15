@@ -1,0 +1,17 @@
+[project]
+name = "garmin-golf-mcp"
+version = "0.1.0"
+description = "MCP server for Garmin Approach R50 golf coaching with Claude"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.0.0",
+    "garminconnect>=0.2.25",
+    "garth>=0.4.0",
+]
+
+[tool.setuptools]
+py-modules = ["server", "garmin_client", "analysis", "coaching"]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
